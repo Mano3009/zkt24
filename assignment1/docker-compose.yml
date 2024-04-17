@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend_service.dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - bridge
+
+  backend:
+    build:
+      context: .
+      dockerfile: Backend_service.dockerfile
+    volumes:
+      - type: bind
+        source: C:/Users/HP/Desktop/assignment1_data
+        target: /Users/HP/Desktop/assignment1
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
